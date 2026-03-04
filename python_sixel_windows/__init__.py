@@ -117,7 +117,7 @@ def main():
         print(__version__)
         sys.exit(0)
 
-    rcdir = os.path.join(os.getenv("HOME"), ".pysixel")
+    rcdir = os.path.join(os.path.expanduser("~"), ".pysixel")
     logdir = os.path.join(rcdir, "log")
     if not os.path.exists(logdir):
         os.makedirs(logdir)
@@ -172,12 +172,18 @@ def main():
                          body_only=options.body_only)
 
     try:
-        if select.select([stdin, ], [], [], 0.0)[0]:
-            image_file = _filenize(stdin)
-        elif len(args) == 0 or args[0] == '-':
+        if len(args) > 0 and args[0] != '-':
+            image_file = args[0]
+        elif sys.platform == 'win32':
+            if not sys.stdin.isatty():
+                image_file = _filenize(stdin)
+            else:
+                parser.print_help()
+                sys.exit(1)
+        elif select.select([stdin, ], [], [], 0.0)[0]:
             image_file = _filenize(stdin)
         else:
-            image_file = args[0]
+            image_file = _filenize(stdin)
 
         writer.draw(image_file,
                     output=sys.stdout,

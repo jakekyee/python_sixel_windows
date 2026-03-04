@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "sixel"
+name = "python-sixel-windows"
 dynamic = ["version"]
 authors = [
 ]
@@ -31,7 +31,7 @@ dependencies = ["Pillow"]
 "Bug Tracker" = "https://github.com/jakekyee/python-sixel-windows/issues"
 
 [project.scripts]
-sixelconv = "sixel:main"
+sixelconv = "python_sixel_windows:main"
 
 [tool.hatch.version]
-path = "sixel/__about__.py"
+path = "python_sixel_windows/__about__.py"

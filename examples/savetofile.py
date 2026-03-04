@@ -2,7 +2,7 @@ import logging
 import sys
 from pathlib import Path
 import argparse
-from sixel import converter
+from python_sixel_windows import converter
 import io
 
 def main():

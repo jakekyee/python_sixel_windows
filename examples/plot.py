@@ -8,7 +8,7 @@ from io import BytesIO
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy
-import sixel
+import python_sixel_windows as sixel
 
 
 def sixel_fig():
